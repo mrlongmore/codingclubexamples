@@ -1,5 +1,5 @@
 import pygame, sys, random
-# Tutorial done based on the video by ClearCode: https://www.youtube.com/watch?v=yfcsB3SGsKY
+colors = [(255, 0, 0), (255, 255, 255), (0, 0, 255)]
 class ParticlePrinciple: #A class is a fancy way of being able to create a group of things that work together.
     def __init__(self): #This allows us to say that the object is doing these things.
         self.particles = [] #This is a list that will hold all of the particles we are creating.
@@ -10,7 +10,7 @@ class ParticlePrinciple: #A class is a fancy way of being able to create a group
                 particle[0][0] += particle[2][0]
                 particle[0][1] += particle[2][1]
                 particle[1] -= 0.1
-                pygame.draw.circle(screen, pygame.Color('white'), particle[0], int(particle[1]))
+                pygame.draw.circle(screen, random.choice(colors), particle[0], int(particle[1]))
     def add_particles(self):
         pos_x = pygame.mouse.get_pos()[0]
         pos_y = pygame.mouse.get_pos()[1]
@@ -30,7 +30,7 @@ clock = pygame.time.Clock()
 particle1 = ParticlePrinciple()
 
 PARTICLE_EVENT = pygame.USEREVENT + 1
-pygame.time.set_timer(PARTICLE_EVENT, 100)
+pygame.time.set_timer(PARTICLE_EVENT, 10) # Hey so like this thing does the thing every 10 milliseconds. NOT VIBECODED.
 
 while True:
     for event in pygame.event.get():
